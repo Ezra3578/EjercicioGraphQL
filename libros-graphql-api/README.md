@@ -173,9 +173,14 @@ module.exports = schema;
 **Puntos clave**
 
 - `buildSchema` convierte el texto del schema en un objeto que GraphQL puede ejecutar.
+
 - El `!` significa "obligatorio, no puede ser `null`".
-- `libro(id)` devuelve `Libro` sin `!`: si el libro no existe, la respuesta es `null`. Es el equivalente al 404 de REST.
-- `[Libro!]!` se lee como "una lista que siempre existe (aunque esté vacía) y cuyos elementos nunca son `null`".
+
+- El `!` en un atributo de un type, significa que al consultar ese atributo, siempre debe retorar un valor no `null`
+
+- En un query como lo es `libro(id: ID!)`, se utiliza el `!` para que el usuario si o si deba poner un id, de lo contrario dara error.
+
+- El retorno de una lista de types se ve de esta forma: `[Libro!]!` consta de una lista con `!` indica que siempre existe incluso si esta vacía, pero no retornara como null. Su elemento interno indica que la lista no podra tener un elemento null o generara error. 
 
 ---
 

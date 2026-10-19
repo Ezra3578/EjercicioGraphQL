@@ -1,4 +1,6 @@
+
 let libros = [
+  
   {
     id: "1",
     titulo: "Cien años de soledad",
@@ -15,6 +17,8 @@ let libros = [
     genero: "Novela",
     paginas: 320
   }
+  
 ];
+
 
 module.exports = libros;
