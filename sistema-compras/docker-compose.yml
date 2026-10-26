@@ -1,0 +1,98 @@
+# Archivo: docker-compose.yml
+
+services:
+
+  # Servicio 1: la aplicación Node.js
+  cliente-api:
+    # Construye la imagen desde el Dockerfile en la carpeta actual
+    image: microservicio-cliente
+
+    build: cliente-api/
+    # Publica el puerto 3001 del contenedor en el puerto 3001 del cliente
+    ports:
+      - "3001:3001" # Cliente
+    # Variables de entorno disponibles dentro del contenedor
+    environment:
+      - PORT=3001 #DB-Connection
+      - DB_HOST=postgres-bd
+      - DB_PORT=5432
+      - DB_NAME=microservices
+      - DB_USER=postgres
+      - DB_PASSWORD=angrybirds
+
+    depends_on:
+      - postgres-bd
+
+    # Reinicia el contenedor si falla
+    restart: unless-stopped
+
+  producto-api:
+    # Construye la imagen desde el Dockerfile en la carpeta actual
+    image: microservicio-producto
+
+    build: producto-api/
+    # Publica el puerto 3001 del contenedor en el puerto 3001 del cliente
+    ports:
+      - "3002:3001" # Cliente
+    # Variables de entorno disponibles dentro del contenedor
+    environment:
+      - PORT=3001 #DB-Connection
+      - DB_HOST=postgres-bd
+      - DB_PORT=5432
+      - DB_NAME=microservices
+      - DB_USER=postgres
+      - DB_PASSWORD=angrybirds
+
+    depends_on:
+      - postgres-bd
+
+    # Reinicia el contenedor si falla
+    restart: unless-stopped
+
+  compra-api:
+    # Construye la imagen desde el Dockerfile en la carpeta actual
+    image: microservicio-compra
+
+    build: compra-api/
+    # Publica el puerto 3001 del contenedor en el puerto 3001 del cliente
+
+    ports:
+      - "3003:3001" # Cliente
+    # Variables de entorno disponibles dentro del contenedor
+    environment:
+      - PORT=3001 #DB-Connection
+      - DB_HOST=postgres-bd
+      - DB_PORT=5432
+      - DB_NAME=microservices
+      - DB_USER=postgres
+      - DB_PASSWORD=angrybirds
+
+      - CLIENTE_API_URL=http://cliente-api:3001
+      - PRODUCTO_API_URL=http://producto-api:3001
+
+    depends_on:
+      - cliente-api
+      - producto-api
+      - postgres-bd
+
+    # Reinicia el contenedor si falla
+    restart: unless-stopped
+
+  postgres-bd:
+    image: postgres:16-alpine
+    container_name: microservicios_bd
+
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: angrybirds
+      POSTGRES_DB: microservices
+
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+    restart: always
+
+volumes:
+  pgdata:
