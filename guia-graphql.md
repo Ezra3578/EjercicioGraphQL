@@ -604,7 +604,12 @@ CMD ["node", "index.js"]
 
 ### Prerrequisito: los microservicios deben estar corriendo
 
-Antes de levantar el gateway, asegúrense de que los tres microservicios estén activos. Desde la carpeta `sistema-compras/`:
+Antes de levantar el gateway, asegúrense de que los tres microservicios estén activos. 
+
+Primero, se debe crear cada `.env` dentro de los microservicios `sistema-compras/cliente-api/`, `sistema-compras/producto-api/` y `sistema-compras/compra-api/`,
+copiando y pegando el contenido de los `.env.example` correspondientes.
+
+Luego, desde la carpeta `sistema-compras/` ejecutar el siguiente comando:
 
 ```bash
 docker compose up
