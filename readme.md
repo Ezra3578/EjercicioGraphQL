@@ -1,9 +1,9 @@
 # Guía práctica: Gateway GraphQL sobre un sistema de microservicios de compras
 
 ## Expositores
-Nicolás Castro Rivera - 20221020055\\
-Erick Santiago Buitrago Peña - 20221020072\\
-Juan Andrés Jiménez Palomino - 20221020087\\
+- Nicolás Castro Rivera - 20221020055
+- Erick Santiago Buitrago Peña - 20221020072
+- Juan Andrés Jiménez Palomino - 20221020087
 
 ## Diapositivas GraphQL
 En el siguiente enlace, se puede consultar el material gráfico utilizado para la presentación:
