@@ -1,5 +1,10 @@
 # Guía práctica: Gateway GraphQL sobre un sistema de microservicios de compras
 
+## Diapositivas GraphQL
+En el siguiente enlace, se puede consultar el material gráfico utilizado para la presentación:
+[Presentación](https://canva.link/l9halwga7c0rwok)
+
+
 ## Un solo punto de entrada para consultar y operar tres microservicios REST independientes
 
 ---
